@@ -28,9 +28,11 @@ env:
         - SETUP_CMD='test'
         - CONDA_DEPENDENCIES=''
         - PIP_DEPENDENCIES=''
+        - MONTAGE_VERSION=4.0
 
     matrix:
         - SETUP_CMD='egg_info'
+        - SETUP_CMD='test' MONTAGE_VERSION=3.3
         - SETUP_CMD='test'
 
 matrix:
@@ -79,12 +81,13 @@ install:
     - source ci-helpers/travis/setup_conda_$TRAVIS_OS_NAME.sh
 
     # Build Montage from source
-    - wget http://montage.ipac.caltech.edu/download/Montage_v3.3.tar.gz
-    - tar zxf Montage_v3.3.tar.gz
-    - cd Montage_v3.3
+    - wget "http://montage.ipac.caltech.edu/download/Montage_v"$MONTAGE_VERSION".tar.gz"
+    - tar zxf "Montage_v"$MONTAGE_VERSION".tar.gz"
+    - mv "Montage_v"$MONTAGE_VERSION" Montage
+    - cd Montage
     - make
     - cd ..
-    - export PATH=$PATH:$PWD/Montage_v3.3/bin
+    - export PATH=$PATH:$PWD/Montage/bin
 
 script:
    - python setup.py $SETUP_CMD
