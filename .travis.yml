@@ -83,8 +83,8 @@ install:
     # Build Montage from source
     - wget "http://montage.ipac.caltech.edu/download/Montage_v"$MONTAGE_VERSION".tar.gz"
     - tar zxf "Montage_v"$MONTAGE_VERSION".tar.gz"
-    - mv "Montage_v"$MONTAGE_VERSION Montage
-    - cd Montage
+    - mv "Montage_v"$MONTAGE_VERSION montage || true
+    - cd montage
     - make
     - cd ..
     - export PATH=$PATH:$PWD/Montage/bin
