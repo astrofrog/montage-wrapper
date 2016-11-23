@@ -87,7 +87,7 @@ install:
     - cd montage
     - make
     - cd ..
-    - export PATH=$PATH:$PWD/Montage/bin
+    - export PATH=$PATH:$PWD/montage/bin
 
 script:
    - python setup.py $SETUP_CMD
